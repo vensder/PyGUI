@@ -65,36 +65,12 @@ def click_eq():
     operand_2_label.configure(text=operand_2_value)
 
 
-def click_0():
-    append_digit(0)
-
-
-def click_1():
-    append_digit(1)
-
-
-def click_2():
-    append_digit(2)
-
-
-def click_3():
-    append_digit(3)
-
-
-def click_4():
-    append_digit(4)
-
-
-def click_5():
-    append_digit(5)
-
-
-button_0 = ttk.Button(window, text="0", command=click_0)
-button_1 = ttk.Button(window, text="1", command=click_1)
-button_2 = ttk.Button(window, text="2", command=click_2)
-button_3 = ttk.Button(window, text="3", command=click_3)
-button_4 = ttk.Button(window, text="4", command=click_4)
-button_5 = ttk.Button(window, text="5", command=click_5)
+button_0 = ttk.Button(window, text="0", command=lambda: append_digit(0))
+button_1 = ttk.Button(window, text="1", command=lambda: append_digit(1))
+button_2 = ttk.Button(window, text="2", command=lambda: append_digit(2))
+button_3 = ttk.Button(window, text="3", command=lambda: append_digit(3))
+button_4 = ttk.Button(window, text="4", command=lambda: append_digit(4))
+button_5 = ttk.Button(window, text="5", command=lambda: append_digit(5))
 
 button_plus = ttk.Button(window, text='+', command=click_plus)
 button_minus = ttk.Button(window, text='-', command=click_minus)
