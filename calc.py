@@ -6,76 +6,76 @@ from tkinter import ttk
 window = tk.Tk()
 window.title("Calculator")
 window.resizable(False, False)
-value_1 = '0'
-value_2 = ''
+operand_1_value = '0'
+operand_2_value = ''
 operation = ''
 
-operand_1 = ttk.Label(window, text='0')
-operand_1.grid(column=1, row=0, columnspan=3, sticky='e')
+operand_1_label = ttk.Label(window, text='0')
+operand_1_label.grid(column=1, row=0, columnspan=3, sticky='e')
 
-operand_2 = ttk.Label(window, text='')
-operand_2.grid(column=1, row=1, columnspan=3, sticky='e')
+operand_2_label = ttk.Label(window, text='')
+operand_2_label.grid(column=1, row=1, columnspan=3, sticky='e')
 
 operation_sign = ttk.Label(window, text=operation)
 operation_sign.grid(column=4, row=0, rowspan=2)
 
 
-def append_num(num):
-    global value_1
-    global value_2
+def append_digit(digit):
+    global operand_1_value
+    global operand_2_value
 
-    if value_2:
-        value_2 += str(num)
-        value_2 = str(int(value_2))
-        operand_2.configure(text=value_2)
+    if operand_2_value:
+        operand_2_value += str(digit)
+        operand_2_value = str(int(operand_2_value))
+        operand_2_label.configure(text=operand_2_value)
     else:
-        value_1 += str(num)
-        value_1 = str(int(value_1))
-        operand_1.configure(text=value_1)
+        operand_1_value += str(digit)
+        operand_1_value = str(int(operand_1_value))
+        operand_1_label.configure(text=operand_1_value)
 
 
 def click_plus():
     global operation_sign
     global operation
-    global value_2
+    global operand_2_value
     operation = '+'
-    value_2 = '0'
+    operand_2_value = '0'
     operation_sign.configure(text=operation)
 
 
 def click_eq():
-    global value_1
-    global value_2
-    if operation == '+' and value_2:
-        value_1 = str(int(value_1) + int(value_2))
-        value_2 = ''
+    global operand_1_value
+    global operand_2_value
+    if operation == '+' and operand_2_value:
+        operand_1_value = str(int(operand_1_value) + int(operand_2_value))
+        operand_2_value = ''
 
-    operand_1.configure(text=value_1)
-    operand_2.configure(text=value_2)
+    operand_1_label.configure(text=operand_1_value)
+    operand_2_label.configure(text=operand_2_value)
 
 
 def click_0():
-    append_num(0)
+    append_digit(0)
 
 
 def click_1():
-    append_num(1)
+    append_digit(1)
 
 
 def click_2():
-    append_num(2)
+    append_digit(2)
 
 
 def click_3():
-    append_num(3)
+    append_digit(3)
 
 
 def click_4():
-    append_num(4)
+    append_digit(4)
 
 
 def click_5():
-    append_num(5)
+    append_digit(5)
 
 
 button_0 = ttk.Button(window, text="0", command=click_0)
