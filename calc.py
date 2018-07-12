@@ -52,39 +52,90 @@ def click_minus():
     operation_sign.configure(text=operation)
 
 
+def click_mult():
+    global operation_sign
+    global operation
+    global operand_2_value
+    operation = '*'
+    operand_2_value = '0'
+    operation_sign.configure(text=operation)
+
+
+def click_div():
+    global operation_sign
+    global operation
+    global operand_2_value
+    operation = '/'
+    operand_2_value = '0'
+    operation_sign.configure(text=operation)
+
+
 def click_eq():
     global operand_1_value
     global operand_2_value
+
     if operation == '+' and operand_2_value:
         operand_1_value = str(int(operand_1_value) + int(operand_2_value))
     elif operation == '-' and operand_2_value:
         operand_1_value = str(int(operand_1_value) - int(operand_2_value))
+    elif operation == '*' and operand_2_value:
+        operand_1_value = str(int(operand_1_value) * int(operand_2_value))
+    elif operation == '/' and operand_2_value:
+        operand_1_value = str(int(operand_1_value) / int(operand_2_value))
 
     operand_2_value = ''
     operand_1_label.configure(text=operand_1_value)
     operand_2_label.configure(text=operand_2_value)
 
 
-button_0 = ttk.Button(window, text="0", command=lambda: append_digit(0))
-button_1 = ttk.Button(window, text="1", command=lambda: append_digit(1))
-button_2 = ttk.Button(window, text="2", command=lambda: append_digit(2))
-button_3 = ttk.Button(window, text="3", command=lambda: append_digit(3))
-button_4 = ttk.Button(window, text="4", command=lambda: append_digit(4))
-button_5 = ttk.Button(window, text="5", command=lambda: append_digit(5))
+def click_clear():
+    global operand_1_value
+    global operand_2_value
+    operand_1_value = '0'
+    operand_2_value = ''
+    operation = ''
+    operand_1_label.configure(text=operand_1_value)
+    operand_2_label.configure(text=operand_2_value)
+    operation_sign.configure(text=operation)
 
+
+def digit_buttons_gen(n):
+    global digit_buttons
+    digit_buttons[n] = ttk.Button(window,
+                                  text=str(n),
+                                  command=lambda: append_digit(n))
+    return digit_buttons[n]
+
+
+digit_buttons = list(range(10))
+for i in range(10):
+    digit_buttons_gen(i)
+
+digit_buttons[0].grid(column=1, row=2)
+digit_buttons[1].grid(column=2, row=2)
+digit_buttons[2].grid(column=3, row=2)
+digit_buttons[3].grid(column=1, row=3)
+digit_buttons[4].grid(column=2, row=3)
+digit_buttons[5].grid(column=3, row=3)
+digit_buttons[6].grid(column=1, row=4)
+digit_buttons[7].grid(column=2, row=4)
+digit_buttons[8].grid(column=3, row=4)
+digit_buttons[9].grid(column=1, row=5)
+
+
+button_mult = ttk.Button(window, text='*', command=click_mult)
+button_div = ttk.Button(window, text='/', command=click_div)
 button_plus = ttk.Button(window, text='+', command=click_plus)
 button_minus = ttk.Button(window, text='-', command=click_minus)
 button_eq = ttk.Button(window, text='=', command=click_eq)
+button_clear = ttk.Button(window, text='Clear', command=click_clear)
 
-button_0.grid(column=1, row=2)
-button_1.grid(column=2, row=2)
-button_2.grid(column=3, row=2)
-button_3.grid(column=1, row=3)
-button_4.grid(column=2, row=3)
-button_5.grid(column=3, row=3)
+button_mult.grid(column=2, row=5)
+button_div.grid(column=3, row=5)
 button_plus.grid(column=4, row=2)
 button_minus.grid(column=4, row=3)
 button_eq.grid(column=4, row=4)
+button_clear.grid(column=4, row=5)
 
 
 window.mainloop()
