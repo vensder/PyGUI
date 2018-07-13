@@ -8,15 +8,10 @@ window.title("Calculator")
 window.resizable(False, False)
 
 operand_1_value = tk.StringVar()
-operand_1_value = '0'
-
 operand_2_value = tk.StringVar()
-operand_2_value.set('')
-
 operation_sign = tk.StringVar()
-operation_sign.set('')
 
-operand_1_label = ttk.Label(window, text='0')
+operand_1_label = ttk.Label(window, textvariable=operand_1_value)
 operand_1_label.grid(column=1, row=0, columnspan=3, sticky='e')
 
 operand_2_label = ttk.Label(window, textvariable=operand_2_value)
@@ -27,13 +22,10 @@ operation_sign_label.grid(column=4, row=0, rowspan=2)
 
 
 def append_digit(digit):
-    global operand_1_value
     if operation_sign.get():
-        operand_2_value.set(operand_2_value.get() + str(digit))
+        operand_2_value.set(str(int(operand_2_value.get() + str(digit))))
     else:
-        operand_1_value += str(digit)
-        operand_1_value = str(int(operand_1_value))
-        operand_1_label.configure(text=operand_1_value)
+        operand_1_value.set(str(int(operand_1_value.get() + str(digit))))
 
 
 def click_operation_sign(op):
@@ -42,20 +34,16 @@ def click_operation_sign(op):
 
 
 def eval_operation():
-    global operand_1_value
-    operand_1_value = str(eval(operand_1_value +
-                               operation_sign.get() +
-                               operand_2_value.get()))
-    operand_1_label.configure(text=operand_1_value)
+    operand_1_value.set(str(eval(operand_1_value.get() +
+                                 operation_sign.get() +
+                                 operand_2_value.get())))
     operand_2_value.set('')
 
 
 def click_clear():
-    global operand_1_value
-    operand_1_value = '0'
-    operand_1_label.configure(text=operand_1_value)
-    operation_sign.set('')
     operand_2_value.set('')
+    operation_sign.set('')
+    operand_1_value.set('')
 
 
 def digit_buttons_gen(n):
