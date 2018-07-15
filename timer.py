@@ -65,58 +65,46 @@ mm_label_value.grid(column=1, row=2, rowspan=2)
 ss_label_value = tk.Label(window, textvariable=ss, font=fixed_font)
 ss_label_value.grid(column=1, row=4, rowspan=2)
 
-hh_button_plus_0 = tk.Button(window, text='+',
-                             font=fixed_font,
+hh_button_plus_0 = tk.Button(window, text='+', font=fixed_font,
                              command=lambda: x_0_plus(hh, 9))
-hh_button_plus_0.grid(column=2, row=0)
-hh_button_minus_0 = tk.Button(window, text='-',
-                              font=fixed_font,
+hh_button_minus_0 = tk.Button(window, text='-', font=fixed_font,
                               command=lambda: x_0_minus(hh, 9))
+hh_button_plus_0.grid(column=2, row=0)
 hh_button_minus_0.grid(column=2, row=1)
 
-hh_button_plus_1 = tk.Button(window, text='+',
-                             font=fixed_font,
+hh_button_plus_1 = tk.Button(window, text='+', font=fixed_font,
                              command=lambda: x_1_plus(hh, 9))
-hh_button_plus_1.grid(column=3, row=0)
-hh_button_minus_1 = tk.Button(window, text='-',
-                              font=fixed_font,
+hh_button_minus_1 = tk.Button(window, text='-', font=fixed_font,
                               command=lambda: x_1_minus(hh, 9))
+hh_button_plus_1.grid(column=3, row=0)
 hh_button_minus_1.grid(column=3, row=1)
 
-mm_button_plus_0 = tk.Button(window, text='+',
-                             font=fixed_font,
+mm_button_plus_0 = tk.Button(window, text='+', font=fixed_font,
                              command=lambda: x_0_plus(mm, 5))
-mm_button_plus_0.grid(column=2, row=2)
-mm_button_minus_0 = tk.Button(window, text='-',
-                              font=fixed_font,
+mm_button_minus_0 = tk.Button(window, text='-', font=fixed_font,
                               command=lambda: x_0_minus(mm, 5))
+mm_button_plus_0.grid(column=2, row=2)
 mm_button_minus_0.grid(column=2, row=3)
 
-mm_button_plus_1 = tk.Button(window, text='+',
-                             font=fixed_font,
+mm_button_plus_1 = tk.Button(window, text='+', font=fixed_font,
                              command=lambda: x_1_plus(mm, 9))
-mm_button_plus_1.grid(column=3, row=2)
-mm_button_minus_1 = tk.Button(window, text='-',
-                              font=fixed_font,
+mm_button_minus_1 = tk.Button(window, text='-', font=fixed_font,
                               command=lambda: x_1_minus(mm, 9))
+mm_button_plus_1.grid(column=3, row=2)
 mm_button_minus_1.grid(column=3, row=3)
 
-ss_button_plus_0 = tk.Button(window, text='+',
-                             font=fixed_font,
+ss_button_plus_0 = tk.Button(window, text='+', font=fixed_font,
                              command=lambda: x_0_plus(ss, 5))
-ss_button_plus_0.grid(column=2, row=4)
-ss_button_minus_0 = tk.Button(window, text='-',
-                              font=fixed_font,
+ss_button_minus_0 = tk.Button(window, text='-', font=fixed_font,
                               command=lambda: x_0_minus(ss, 5))
+ss_button_plus_0.grid(column=2, row=4)
 ss_button_minus_0.grid(column=2, row=5)
 
-ss_button_plus_1 = tk.Button(window, text='+',
-                             font=fixed_font,
+ss_button_plus_1 = tk.Button(window, text='+', font=fixed_font,
                              command=lambda: x_1_plus(ss, 9))
-ss_button_plus_1.grid(column=3, row=4)
-ss_button_minus_1 = tk.Button(window, text='-',
-                              font=fixed_font,
+ss_button_minus_1 = tk.Button(window, text='-', font=fixed_font,
                               command=lambda: x_1_minus(ss, 9))
+ss_button_plus_1.grid(column=3, row=4)
 ss_button_minus_1.grid(column=3, row=5)
 
 window.mainloop()
