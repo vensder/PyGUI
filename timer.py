@@ -27,27 +27,27 @@ def x_0_plus(obj, limit):
     obj.set(str(x_0) + obj.get()[1])
 
 
-def x_0_minus(obj, max):
+def x_0_minus(obj, limit):
     x_0 = int(obj.get()[0])
     x_0 -= 1
     if x_0 < 0:
-        x_0 = max
+        x_0 = limit
     obj.set(str(x_0) + obj.get()[1])
 
 
-def x_1_plus(obj, max):
+def x_1_plus(obj, limit):
     x_1 = int(obj.get()[1])
     x_1 += 1
-    if x_1 > max:
+    if x_1 > limit:
         x_1 = 0
     obj.set(obj.get()[0] + str(x_1))
 
 
-def x_1_minus(obj, max):
+def x_1_minus(obj, limit):
     x_1 = int(obj.get()[1])
     x_1 -= 1
     if x_1 < 0:
-        x_1 = max
+        x_1 = limit
     obj.set(obj.get()[0] + str(x_1))
 
 
