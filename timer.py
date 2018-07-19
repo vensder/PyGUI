@@ -14,14 +14,17 @@ hh = tk.StringVar()
 mm = tk.StringVar()
 ss = tk.StringVar()
 sss = tk.StringVar()
+run_stop_caption = tk.StringVar()
 
 hh.set('00')
 mm.set('00')
 ss.set('00')
 sss.set('000')
+run_stop_caption.set('Run')
 
-sss_time_stop = 0
+sss_time_to_stop = 0
 display_is_red = False
+timer_is_stop = False
 
 def hh_mm_ss_to_sec():
     return int(hh.get()) * 60 * 60 + int(mm.get()) * 60 + int(ss.get())
@@ -60,28 +63,51 @@ def x_1_minus(obj, limit):
 
 
 def clear_set():
+    global sss_time_to_stop
+    global display_is_red
+    global timer_is_stop
     hh.set('00')
     mm.set('00')
     ss.set('00')
+    sss.set('000')
+    run_stop_caption.set('Run')
+    sss_time_to_stop = 0
+    display_is_red = False
 
 
-def start():
-    global sss_time_stop
-    sss.set(str(hh_mm_ss_to_sec()))
-    sss_time_now = (int(time.time()))
-    sss_time_stop = sss_time_now + hh_mm_ss_to_sec()
-    sync_sss()
+def run_stop():
+    global timer_is_stop
+    global sss_time_to_stop
+    global display_is_red
+    global default_color
+    if run_stop_caption.get() == 'Run':
+        sss.set(str(hh_mm_ss_to_sec()))
+        sss_time_now = (int(time.time()))
+        sss_time_to_stop = sss_time_now + hh_mm_ss_to_sec()
+        clear_button.config(state='disabled')
+        timer_is_stop = False
+        sync_sss()
+        run_stop_caption.set('Stop')
+    elif run_stop_caption.get() == 'Stop':
+        timer_is_stop = True
+        run_stop_caption.set('Run')
+        sss_time_to_stop = 0
+        clear_button.config(state='normal')
+        display_label.config(bg=default_color)
+        display_is_red = False
 
 
 def sync_sss():
-    global sss_time_stop
-    global display_is_red
-    sss_left = sss_time_stop - int(time.time())
-    sss.set(str(sss_left))
-    if sss_left <= 0 and not display_is_red:
-        display_label.config(bg='red')
-        display_is_red = True
-    window.after(1000, sync_sss)
+    global timer_is_stop
+    if not timer_is_stop:
+        global sss_time_to_stop
+        global display_is_red
+        sss_left = sss_time_to_stop - int(time.time())
+        sss.set(str(sss_left))
+        if sss_left <= 0 and not display_is_red:
+            display_label.config(bg='red')
+            display_is_red = True
+        window.after(1000, sync_sss)
 
 
 hh_label = tk.Label(window, text='hh', font=fixed_font)
@@ -144,12 +170,12 @@ clear_button = tk.Button(window, text='Clr', font=fixed_font,
                          command=lambda: clear_set())
 clear_button.grid(column=0,row=5, columnspan=2)
 
-start_button = tk.Button(window, text='Run', font=fixed_font,
-                         command=lambda: start())
+start_button = tk.Button(window, textvariable=run_stop_caption, font=fixed_font,
+                         command=lambda: run_stop())
 start_button.grid(column=2,row=5, columnspan=2)
 
 display_label = tk.Label(window, textvariable=sss, font=fixed_font)
 display_label.grid(column=4, row=5, columnspan=2)
+default_color = display_label.cget('bg')
 
-#window.after(1000, sync_sss())
 window.mainloop()
