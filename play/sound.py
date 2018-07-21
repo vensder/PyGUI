@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from os import system
+
 from os import path
 import subprocess
 
