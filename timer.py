@@ -2,7 +2,9 @@
 
 import tkinter as tk
 from tkinter.font import Font
-import time
+from time import time
+from play.sound import bell
+
 
 window = tk.Tk()
 window.title("Timer")
@@ -82,7 +84,7 @@ def run_stop():
     global default_color
     if run_stop_caption.get() == 'Run':
         sss.set(str(hh_mm_ss_to_sec()))
-        sss_time_now = (int(time.time()))
+        sss_time_now = (int(time()))
         sss_time_to_stop = sss_time_now + hh_mm_ss_to_sec()
         clear_button.config(state='disabled')
         timer_is_stop = False
@@ -102,10 +104,11 @@ def sync_sss():
     if not timer_is_stop:
         global sss_time_to_stop
         global display_is_red
-        sss_left = sss_time_to_stop - int(time.time())
+        sss_left = sss_time_to_stop - int(time())
         sss.set(str(sss_left))
         if sss_left <= 0 and not display_is_red:
             display_label.config(bg='red')
+            bell()
             display_is_red = True
         window.after(1000, sync_sss)
 
