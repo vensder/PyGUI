@@ -1,7 +1,7 @@
 # PyGUI
 Python GUI Examples
 
-For the timer.py we need to install tkinter.
+We need to install Tkinter for these examples.
 
 On Linux:
 
