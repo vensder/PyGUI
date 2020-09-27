@@ -17,7 +17,6 @@ def set_label_text(f):
 
 
 root = Tk()
-var = DoubleVar()
 label = Label(root, text=str(fahr(0)))
 
 scale = Scale(root, from_=200, to=-100, resolution=0.1, length=300)
